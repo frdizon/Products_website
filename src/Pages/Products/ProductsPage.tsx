@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-import PageLayout from './ProductsLayout';
+import React, { FC } from "react";
+import PageLayout from "./ProductsLayout";
 
 const ProductsPage: FC = () => {
-    return <PageLayout />
-}
+  return <PageLayout />;
+};
 
 export default ProductsPage;

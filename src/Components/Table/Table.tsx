@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-import { TableContainer } from './styles';
+import React, { FC } from "react";
+import { TableContainer } from "./styles";
 
 const Table: FC = () => {
-    return (<TableContainer />)
+  return <TableContainer />;
 };
 
 export default Table;
