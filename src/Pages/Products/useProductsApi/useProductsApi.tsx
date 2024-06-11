@@ -14,6 +14,7 @@ const useProductsApi = () => {
 
   const onApiCall = useCallback(() => {
     setIsLoading(true);
+    setData([]);
     fetch(PRODUCTS_URL)
       .then((res) => res.json())
       .then((json) => {
@@ -27,6 +28,7 @@ const useProductsApi = () => {
     (pageNum: number) => {
       const urlSkipValue = (pageNum - 1) * URL_LIMIT;
       setIsLoading(true);
+      setData([]);
       fetch(
         `${PRODUCTS_URL}${productsUrlQueryBuilder(urlSkipValue, searchQuery)}`,
       )
@@ -38,18 +40,21 @@ const useProductsApi = () => {
   );
 
   const handleNewSearch = useCallback((newSearchQuery: string) => {
-    const urlSkipValue = 0;
-    setIsLoading(true);
-    setSearchQuery(newSearchQuery);
-    fetch(
-      `${PRODUCTS_URL}${productsUrlQueryBuilder(urlSkipValue, newSearchQuery)}`,
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setData(json.products);
-        setNumOfPages(Math.ceil(json.total / URL_LIMIT) - 1);
-      })
-      .finally(() => setIsLoading(false));
+    if (!(newSearchQuery === "" && newSearchQuery === searchQuery)) {
+      const urlSkipValue = 0;
+      setIsLoading(true);
+      setData([]);
+      setSearchQuery(newSearchQuery);
+      fetch(
+        `${PRODUCTS_URL}${productsUrlQueryBuilder(urlSkipValue, newSearchQuery)}`,
+      )
+        .then((res) => res.json())
+        .then((json) => {
+          setData(json.products);
+          setNumOfPages(Math.ceil(json.total / URL_LIMIT) - 1);
+        })
+        .finally(() => setIsLoading(false));
+    }
   }, []);
 
   return {
