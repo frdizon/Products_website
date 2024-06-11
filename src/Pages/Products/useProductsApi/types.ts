@@ -5,6 +5,5 @@ export interface TProduct {
     price: number;
     thumbnail: string;
     images: string[];
+    category: string;
 }
-
-export type TProducts = TProduct[];

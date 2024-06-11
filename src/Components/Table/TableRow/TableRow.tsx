@@ -8,6 +8,7 @@ interface TTableHeaderProps {
   description: string;
   price: number;
   thumbnail: string;
+  onClick: () => void;
 }
 
 const TableHeader: FC<TTableHeaderProps> = ({
@@ -15,9 +16,10 @@ const TableHeader: FC<TTableHeaderProps> = ({
   description,
   price,
   thumbnail,
+  onClick,
 }) => {
   return (
-    <RowContainer>
+    <RowContainer onClick={onClick}>
       <TableCell flex={TABLE_FLEX_VALUES[0]} isCentered>
         <StyledImage src={thumbnail} alt={title} />
       </TableCell>
