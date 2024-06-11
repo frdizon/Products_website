@@ -55,6 +55,7 @@ const Pagination: FC<TPaginationProps> = ({
       {leftButtonComponent}
       {generateCountArray(numberOfPages).map((pageNumber) => (
         <PaginationItem
+          key={pageNumber}
           isSelected={pageNumber === paginationValue}
           onClick={handlePageChange(pageNumber)}
         >

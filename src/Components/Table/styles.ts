@@ -9,24 +9,6 @@ export const TableContainer = styled.div`
   overflow-y: auto;
 `;
 
-export const HeaderCell = styled.div<{ flex: number }>`
-  height: 100%;
-  flex: ${({ flex }) => flex};
-
-  display: flex;
-  align-items: center;
-`;
-
-export const RowCell = styled.div<{ flex: number; isCentered?: boolean }>`
-  height: 100%;
-  flex: ${({ flex }) => flex};
-
-  display: flex;
-  flex-direction: column;
-  align-items: ${({ isCentered }) => (isCentered ? "center" : "flex-start")};
-  justify-content: center;
-`;
-
 export const TableCell = styled.div<{ flex: number; isCentered?: boolean }>`
   height: 100%;
   flex: ${({ flex }) => flex};
