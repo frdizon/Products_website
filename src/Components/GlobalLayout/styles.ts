@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const GlobalLayoutContainer = styled.div`
     height: 100vh;
     width: 100vw;
-    display: flex;
     flex-direction: column;
 
     box-sizing: border-box;
@@ -27,7 +26,7 @@ export const AppHeader = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-    flex: 1;
+    height: calc(100% - 50px);
     width: 100%;
     padding: 12px;
 `;

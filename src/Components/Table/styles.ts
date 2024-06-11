@@ -1,9 +1,38 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TableContainer = styled.div`
-    width: 100%;
-    flex: 1;
-    margin: 12px 0;
+  flex: 1;
+  width: 100%;
+  margin: 8px 0;
+  border: 1px solid gray;
+  background-color: aliceblue;
+  overflow-y: auto;
+`;
 
-    background-color: aliceblue;
+export const HeaderCell = styled.div<{ flex: number }>`
+  height: 100%;
+  flex: ${({ flex }) => flex};
+
+  display: flex;
+  align-items: center;
+`;
+
+export const RowCell = styled.div<{ flex: number; isCentered?: boolean }>`
+  height: 100%;
+  flex: ${({ flex }) => flex};
+
+  display: flex;
+  flex-direction: column;
+  align-items: ${({ isCentered }) => (isCentered ? "center" : "flex-start")};
+  justify-content: center;
+`;
+
+export const TableCell = styled.div<{ flex: number; isCentered?: boolean }>`
+  height: 100%;
+  flex: ${({ flex }) => flex};
+
+  display: flex;
+  flex-direction: column;
+  align-items: ${({ isCentered }) => (isCentered ? "center" : "flex-start")};
+  justify-content: center;
 `;
