@@ -1,16 +1,18 @@
 import React, { ChangeEvent, FC, useCallback, KeyboardEvent } from "react";
-import { StyledInput } from "./styles";
+import { ClearIconContainer, InputContainer, StyledInput } from "./styles";
 
 interface TSearchInputProps {
   searchValue: string;
   onSearchChange: (searchValue: string) => void;
   onEnter: () => void;
+  onClear: () => void;
 }
 
 const SearchInput: FC<TSearchInputProps> = ({
   searchValue,
   onSearchChange,
   onEnter,
+  onClear,
 }) => {
   const onSearchChangeCallback = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,12 +27,23 @@ const SearchInput: FC<TSearchInputProps> = ({
     }
   };
 
+  const handleClearClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    e.stopPropagation();
+    onClear();
+  };
+
   return (
-    <StyledInput
-      value={searchValue}
-      onChange={onSearchChangeCallback}
-      onKeyDown={handleKeyDown}
-    />
+    <InputContainer>
+      <StyledInput
+        value={searchValue}
+        onChange={onSearchChangeCallback}
+        onKeyDown={handleKeyDown}
+        placeholder="Search product"
+      />
+      <ClearIconContainer onClick={handleClearClick}>✖</ClearIconContainer>
+    </InputContainer>
   );
 };
 

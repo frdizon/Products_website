@@ -48,6 +48,11 @@ const ProductsLayout: FC = () => {
     [handleApiPagination],
   );
 
+  const handleSearchClear = useCallback(() => {
+    setSearchValue("");
+    handleNewSearch("");
+  }, [handleNewSearch]);
+
   return (
     <GlobalLayout appHeader="PRODUCTS DEMO">
       <ProductsLayoutContainer>
@@ -55,6 +60,7 @@ const ProductsLayout: FC = () => {
           searchValue={searchValue}
           onSearchChange={handleSearchChange}
           onEnter={handleSearchEnter}
+          onClear={handleSearchClear}
         />
         <Table products={data} />
         <Pagination
