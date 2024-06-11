@@ -38,6 +38,7 @@ const ProductsLayout: FC = () => {
 
   const handleSearchEnter = useCallback(() => {
     handleNewSearch(searchValue);
+    setPaginationValue(1);
   }, [handleNewSearch, searchValue]);
 
   const handlePageChange = useCallback(
@@ -52,6 +53,7 @@ const ProductsLayout: FC = () => {
     if (searchValue !== "") {
       setSearchValue("");
       handleNewSearch("");
+      setPaginationValue(1);
     }
   }, [searchValue, handleNewSearch]);
 
