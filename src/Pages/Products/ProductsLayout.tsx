@@ -1,9 +1,10 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import GlobalLayout from "../../Components/GlobalLayout/GlobalLayout";
 import SearchInput from "../../Components/SearchInput/SearchInput";
 import Pagination from "../../Components/Pagination/Pagination";
 import Table from "../../Components/Table/Table";
+import useProductsApi from "./useProductsApi/useProductsApi";
 
 const ProductsLayoutContainer = styled.div`
   height: 100%;
@@ -18,13 +19,34 @@ const ProductsLayout: FC = () => {
   const [searchValue, setSearchValue] = useState("");
   const [paginationValue, setPaginationValue] = useState(1);
 
+  const {
+    data,
+    isLoading,
+    numOfPages,
+    onApiCall,
+    handleApiPagination,
+    handleNewSearch,
+  } = useProductsApi();
+
+  useEffect(() => {
+    onApiCall();
+  }, [onApiCall]);
+
   const handleSearchChange = useCallback((newSearchValue: string) => {
     setSearchValue(newSearchValue);
   }, []);
 
-  const handlePageChange = useCallback((newPageValue: number) => {
-    setPaginationValue(newPageValue);
-  }, []);
+  const handleSearchEnter = useCallback(() => {
+    handleNewSearch(searchValue);
+  }, [handleNewSearch, searchValue]);
+
+  const handlePageChange = useCallback(
+    (newPageValue: number) => {
+      handleApiPagination(newPageValue);
+      setPaginationValue(newPageValue);
+    },
+    [handleApiPagination],
+  );
 
   return (
     <GlobalLayout appHeader="PRODUCTS DEMO">
@@ -32,10 +54,11 @@ const ProductsLayout: FC = () => {
         <SearchInput
           searchValue={searchValue}
           onSearchChange={handleSearchChange}
+          onEnter={handleSearchEnter}
         />
-        <Table />
+        <Table products={data} />
         <Pagination
-          numberOfPages={8}
+          numberOfPages={numOfPages}
           paginationValue={paginationValue}
           onPageChange={handlePageChange}
         />

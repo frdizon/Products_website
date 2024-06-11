@@ -6,9 +6,15 @@ import { HeaderContainer } from "./styles";
 const TableHeader: FC = () => {
   return (
     <HeaderContainer>
-      <TableCell flex={TABLE_FLEX_VALUES[0]}>Thumbnail</TableCell>
-      <TableCell flex={TABLE_FLEX_VALUES[1]}>Name</TableCell>
-      <TableCell flex={TABLE_FLEX_VALUES[2]}>Price</TableCell>
+      <TableCell flex={TABLE_FLEX_VALUES[0]}>
+        <b>Thumbnail</b>
+      </TableCell>
+      <TableCell flex={TABLE_FLEX_VALUES[1]}>
+        <b>Name</b>
+      </TableCell>
+      <TableCell flex={TABLE_FLEX_VALUES[2]}>
+        <b>Price</b>
+      </TableCell>
     </HeaderContainer>
   );
 };
