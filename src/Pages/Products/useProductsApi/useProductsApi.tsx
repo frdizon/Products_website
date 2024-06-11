@@ -40,21 +40,19 @@ const useProductsApi = () => {
   );
 
   const handleNewSearch = useCallback((newSearchQuery: string) => {
-    if (!(newSearchQuery === "" && newSearchQuery === searchQuery)) {
-      const urlSkipValue = 0;
-      setIsLoading(true);
-      setData([]);
-      setSearchQuery(newSearchQuery);
-      fetch(
-        `${PRODUCTS_URL}${productsUrlQueryBuilder(urlSkipValue, newSearchQuery)}`,
-      )
-        .then((res) => res.json())
-        .then((json) => {
-          setData(json.products);
-          setNumOfPages(Math.ceil(json.total / URL_LIMIT) - 1);
-        })
-        .finally(() => setIsLoading(false));
-    }
+    const urlSkipValue = 0;
+    setIsLoading(true);
+    setData([]);
+    setSearchQuery(newSearchQuery);
+    fetch(
+      `${PRODUCTS_URL}${productsUrlQueryBuilder(urlSkipValue, newSearchQuery)}`,
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        setData(json.products);
+        setNumOfPages(Math.ceil(json.total / URL_LIMIT) - 1);
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   return {
